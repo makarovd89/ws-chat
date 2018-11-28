@@ -9,29 +9,26 @@ import org.springframework.web.servlet.config.annotation.DefaultServletHandlerCo
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.telegram.makarovd.wschat.web.Controller;
-
 import java.util.Arrays;
 import java.util.List;
 
 @Configuration
 @EnableWebMvc
 public class SpringMvc implements WebMvcConfigurer {
+  @Bean
+  public Controller adminController() {
+    return new Controller();
+  }
 
-    @Bean
-    public Controller adminController(){
-        return new Controller();
-    }
+  @Override
+  public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
+    configurer.enable();
+  }
 
-    @Override
-    public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer)
-    {
-        configurer.enable();
-    }
-
-    @Override
-    public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
-        StringHttpMessageConverter stringHttpMessageConverter = new StringHttpMessageConverter();
-        stringHttpMessageConverter.setSupportedMediaTypes(Arrays.asList(MediaType.TEXT_PLAIN, MediaType.TEXT_HTML));
-        converters.add(stringHttpMessageConverter);
-    }
+  @Override
+  public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
+    StringHttpMessageConverter stringHttpMessageConverter = new StringHttpMessageConverter();
+    stringHttpMessageConverter.setSupportedMediaTypes(Arrays.asList(MediaType.TEXT_PLAIN, MediaType.TEXT_HTML));
+    converters.add(stringHttpMessageConverter);
+  }
 }

@@ -5,8 +5,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class Controller {
-    @RequestMapping("/message")
-    public String getMessage(){
-        return "Some text\n";
-    }
+  @RequestMapping("/message")
+  public String getMessage() {
+    return "Some text\n";
+  }
 }
